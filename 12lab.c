@@ -1,18 +1,20 @@
-#define _CRT_SECURE_NO_WARNINGS
-#include<stdio.h>
-#include<direct.h>
+#include <stdio.h>
+#include <direct.h>
 
-int main() {
-    FILE* list = fopen("list.txt", "a");
-    int i = 1;
+void make_directory(const char *name) {
+    _mkdir(name);
+}
 
-    while (i > 0) {
-        char name[1000];
-        scanf(" %[^\n]s", name);
-        _mkdir(name);
-        fprintf(list, "%s\n", name);
+int main(int argc, char *argv[]) {
+    FILE *fout;
+    fout = fopen("waple.txt", "w");
+    fprintf(fout, "Subfolders of the current folder waple.txt: \n\n");
+    if (argc > 1) {
+        for (int i = 1; i < argc; i++) {
+            make_directory(argv[i]);
+            fprintf(fout, "%s\n", argv[i]);
+        }
     }
-
-    fclose(list);
+    fclose(fout);
     return 0;
 }
