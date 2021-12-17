@@ -7,7 +7,9 @@ void make_directory(const char *name) {
 
 int main(int argc, char *argv[]) {
     FILE *fout;
-    fout = fopen("waple.txt", "w");
+    char name[100];
+    scanf("%[^\n]s",&name);
+    fout = fopen(name, "w");
     fprintf(fout, "Subfolders of the actual folder waple.txt: \n\n");
     if (argc > 1) {
         for (int i = 1; i < argc; i++) {
